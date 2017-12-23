@@ -37,6 +37,10 @@ getInput("input.txt").then((data) => {
         if (c == "?") { output += pointer.toString(); }
         if (c == "[") { jumpPoint = i; }
         if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint; } }
+        if (c == "{") { jumpPoint = i; }
+        if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint; } }
+        if (c == "(") { jumpPoint = i; }
+        if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint; } }
         if (c == "*") { break }
     }
     
