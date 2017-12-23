@@ -47,7 +47,6 @@ getInput("input.txt").then((data) => {
     
     // Read Output
     console.log(output);
-    console.log(args)
 }).catch(console.error);
 
 function getChar(p) {
