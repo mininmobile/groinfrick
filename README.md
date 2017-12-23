@@ -5,7 +5,7 @@ Totally not a Brainfuck clone.
 
 Command | Purpose
 --- | --
-`^` | Set current pointer to corrosponding input
+`^` | Set current pointer to corrosponding argument point
 `?` | Echo current pointer
 `!` | Echo current pointer's data
 `*` | Exit prematurely
