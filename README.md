@@ -1,5 +1,5 @@
 # groinfrick
-Totally not Brainfuck.
+Totally not a Brainfuck clone.
 
 # Commands
 
