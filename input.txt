@@ -1,5 +1,14 @@
-+++++++++++++++!> H
-++!> E
-++++++++++++++++++!> L
-++++++++++++++++++!> L
-++++++++! O
+>++++++++++++++++++++++++++< set next pointer to int
++++++ add 5 to current pointer
+
+while this pointer is not null or 0
+[
+    - take 1 from current pointer
+    > move to right pointer
+    + add 1 to current pointer
+    < move to left pointer
+]
+
+! echo current pointer value
+> move to right pointer
+! echo current pointer value

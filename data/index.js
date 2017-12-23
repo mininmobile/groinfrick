@@ -21,6 +21,7 @@ getInput("input.txt").then((data) => {
     // Create Point Registry
     var pointers = [0];
     var pointer = 0;
+    var jumpPoint = 0;
     
     // Begin
     var output = "";
@@ -29,19 +30,21 @@ getInput("input.txt").then((data) => {
         let c = input[i];
         
         if (c == "+") { pointers[pointer] += 1; }
+        if (c == "-") { pointers[pointer] -= 1; }
         if (c == ">") { pointer++; if (pointer == pointers.length) { pointers.push(0); } }
-        if (c == "!") { output += getChar(pointers[pointer]) }
+        if (c == "<") { pointer--; }
+        if (c == "!") { output += getChar(pointers[pointer]); }
+        if (c == "?") { output += pointer.toString(); }
+        if (c == "[") { jumpPoint = i; }
+        if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint; } }
     }
     
     // Read Output
     console.log(output);
-    console.log(input);
-    console.log(pointers);
-    console.log(pointer);
 }).catch(console.error);
 
 function getChar(p) {
     if (p == 0) return "null";
-    else if (p > 1 && p <= 26) return "qwertyuiopasdfghjklzxcvbnm"[p];
-    else if (p > 26) return p-26;
+    else if (p > 0 && p <= 25) return "qwertyuiopasdfghjklzxcvbnm"[p];
+    else if (p > 25) return (p-26).toString();
 }
