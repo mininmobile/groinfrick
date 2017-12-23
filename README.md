@@ -18,7 +18,7 @@ Loop | Process
 --- | ---
 `[`, `]` | While current pointer is *not* 0
 `{`, `}` | While current pointer is *not* string
-`<`, `>` | While current pointer is *not* int
+`(`, `)` | While current pointer is *not* int
 
 # Data Types
 ## Strings
