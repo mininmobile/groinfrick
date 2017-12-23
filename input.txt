@@ -1,4 +1,8 @@
->++++++++++++++++++++++++++< set next pointer to int
+> move to right pointer
+( while this pointer is not a number
+    + add 1 to this pointer
+)
+< move to left pointer
 +++++ add 5 to current pointer
 
 while this pointer is not null or 0
@@ -12,3 +16,16 @@ while this pointer is not null or 0
 ! echo current pointer value
 > move to right pointer
 ! echo current pointer value
+
+* exit the program to prevent running further
+
+Pointer Register [ 0, 31, 0, ... ]
+          Pointers 1, 2,  3, etc
+
+0 == null
+1 - 26 == string
+27 - beyond == int
+
+0 == null
+25 == n
+31 == 5
