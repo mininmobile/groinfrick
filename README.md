@@ -17,3 +17,13 @@ Command | Purpose
 Loop | Process
 --- | ---
 `[`, `]` | While current pointer is *not* 0
+
+# Data Types
+## Strings
+From 1 to 26 in the QWERTY alphabet.
+
+## Integers
+From 26 to infinity - so `27 == 0`, `28 == 1`, `29 == 2`, etc.
+
+## Null
+When the pointer data is equal or lower than 0.
