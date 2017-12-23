@@ -7,10 +7,10 @@ async function getInput(file) {
   return await readFile(file);
 }
 
-// Simplify Input
+var args = fs.readFileSync("input args.txt").toString();
 getInput("input.txt").then((data) => {
     // Convert data to string
-    input = data.toString();
+    var input = data.toString();
 
     // p u r i f y
     input = input.replace(" ", "");
@@ -41,15 +41,23 @@ getInput("input.txt").then((data) => {
         if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint; } }
         if (c == "(") { jumpPoint = i; }
         if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint; } }
+        if (c == "^") { pointers[pointer] = toPoint(args[pointer]); }
         if (c == "*") { break }
     }
     
     // Read Output
     console.log(output);
+    console.log(args)
 }).catch(console.error);
 
 function getChar(p) {
     if (p == 0) return "null";
     else if (p > 0 && p <= 25) return "qwertyuiopasdfghjklzxcvbnm"[p];
     else if (p > 25) return (p-26).toString();
+}
+
+function toPoint(p) {
+    if (p == " ") return 0;
+    else if (/[a-z]/.test(p)) return "qwertyuiopasdfghjklzxcvbnm".indexOf(p);
+    else if (/[0-9]/.test(p)) return parseInt(p)+26;
 }
