@@ -13,3 +13,7 @@ Command | Purpose
 `-` | Remove 1 from pointer selected
 `>` | Move to right pointer
 `<` | Move to left pointer
+
+Loop | Process
+--- | ---
+`[`, `]` | While current pointer is *not* 0
