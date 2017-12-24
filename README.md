@@ -28,4 +28,4 @@ From 1 to 26 in the QWERTY alphabet.
 From 26 to infinity - so `27 == 0`, `28 == 1`, `29 == 2`, etc.
 
 ## Null
-When the pointer data is equal or lower than 0.
+When the pointer data is equal to 0.
