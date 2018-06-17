@@ -28,7 +28,7 @@ getInput("input.txt").then((data) => {
     // Create Point Registry
     var pointers = [0];
     var pointer = 0;
-    var jumpPoint = [0];
+    var jumpPoint = [];
     
     // Begin
     var output = "";
@@ -52,14 +52,16 @@ getInput("input.txt").then((data) => {
         if (c == "!") { output += getChar(pointers[pointer]); }
         if (c == "?") { output += pointer.toString(); }
         if (c == "[") { jumpPoint.push(i); }
-        if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint[jumpPoint.length - 1]; } }
+        if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint[jumpPoint.length - 1]; jumpPoint.pop(); } }
         if (c == "{") { jumpPoint.push(i); }
-        if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint[jumpPoint.length - 1]; } }
+        if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint[jumpPoint.length - 1]; jumpPoint.pop(); } }
         if (c == "(") { jumpPoint.push(i); }
-        if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint[jumpPoint.length - 1]; } }
+        if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint[jumpPoint.length - 1]; jumpPoint.pop(); } }
         if (c == "^") { pointers[pointer] = toPoint(args[pointer]); }
         if (c == "*") { break }
-        //#endregion
+		//#endregion
+		
+		console.log(jumpPoint)
     }
     
     // Read Output
@@ -73,8 +75,8 @@ getInput("input.txt").then((data) => {
 // Convert Point to Char
 function getChar(p) {
     if (p == 0) return "null";
-    else if (p > 0 && p <= 25) return "qwertyuiopasdfghjklzxcvbnm"[p];
-    else if (p > 25) return (p-26).toString();
+    else if (p > 0 && p <= 25) return "qwertyuiopasdfghjklzxcvbnm"[p + 1];
+    else if (p > 25) return (p-25).toString();
 }
 
 // Convert Char to Point
