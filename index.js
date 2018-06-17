@@ -51,16 +51,14 @@ getInput("input.txt").then((data) => {
         if (c == "!") { console.log(getChar(pointers[pointer])); }
         if (c == "?") { console.log(pointer.toString()); }
         if (c == "[") { jumpPoint.push(i); }
-        if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint[jumpPoint.length - 1]; jumpPoint.pop(); } }
+        if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint[jumpPoint.length - 1] - 1; jumpPoint.pop(); } }
         if (c == "{") { jumpPoint.push(i); }
-        if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint[jumpPoint.length - 1]; jumpPoint.pop(); } }
+        if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint[jumpPoint.length - 1] - 1; jumpPoint.pop(); } }
         if (c == "(") { jumpPoint.push(i); }
-        if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint[jumpPoint.length - 1]; jumpPoint.pop(); } }
+        if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint[jumpPoint.length - 1] - 1; jumpPoint.pop(); } }
         if (c == "^") { pointers[pointer] = toPoint(args[pointer]); }
         if (c == "*") { break }
 		//#endregion
-		
-		console.log(jumpPoint)
     }
 }).catch((message) => {
     // When the an error, who you gonna call?
@@ -70,9 +68,9 @@ getInput("input.txt").then((data) => {
 
 // Convert Point to Char
 function getChar(p) {
-    if (p == 0) return "null";
-    else if (p > 0 && p <= 25) return "qwertyuiopasdfghjklzxcvbnm"[p + 1];
-    else if (p > 25) return (p-25).toString();
+	if (p == 0) return "null";
+    else if (p > 0 && p <= 26) return "qwertyuiopasdfghjklzxcvbnm"[p - 1];
+    else if (p > 25) return (p-27).toString();
 }
 
 // Convert Char to Point
