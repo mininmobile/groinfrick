@@ -1,12 +1,3 @@
-^
-[
-	!
-	>
-	^
-]
-
-*
-
 > move to right pointer
 ( while this pointer is not a number
     + add 1 to this pointer
@@ -29,7 +20,7 @@ while this pointer is not null or 0
 * exit the program to prevent running further
 
 Pointer Register [ 0, 31, 0, ... ]
-          Pointers 1, 2,  3, etc
+		  Pointers 1, 2,  3, etc
 
 0 == null
 1 - 26 == string

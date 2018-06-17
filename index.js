@@ -5,15 +5,22 @@ const fs = require("fs"),
 // Make readFile() function
 const readFile = util.promisify(fs.readFile);
 
-// Async boi
+// Asyncify
 async function getInput(file) {
   return await readFile(file);
+}
+
+// Get Input File
+function getInputFile() {
+	if (process.argv[2]) return process.argv[2];
+	
+	return "input.txt";
 }
 
 // Get Arguments
 var args = fs.readFileSync("input args.txt").toString();
 // Load Main Boi
-getInput("input.txt").then((data) => {
+getInput(getInputFile()).then((data) => {
 	// Convert data to string
 	var input = data.toString();
 
