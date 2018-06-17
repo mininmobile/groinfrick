@@ -28,7 +28,7 @@ getInput("input.txt").then((data) => {
     // Create Point Registry
     var pointers = [0];
     var pointer = 0;
-    var jumpPoint = 0;
+    var jumpPoint = [0];
     
     // Begin
     var output = "";
@@ -38,8 +38,8 @@ getInput("input.txt").then((data) => {
         let errorDat = `\n      Position: ${i}\n      Character: ${e}`;
 
         // Error Handler
-        if (pointer < 0) throw RangeError(`Pointer accounts to under 0${errorDat}`);
-        if (pointers[pointer] < 0) throw TypeError(`Pointer data is not an existing data type${errorDat}`);
+        if (pointer < 0) throw new Error(`Pointer accounts to under 0${errorDat}`);
+        if (pointers[pointer] < 0) throw new Error(`Pointer data is not an existing data type${errorDat}`);
 
         // Get Character
         let c = input[i];
@@ -51,12 +51,12 @@ getInput("input.txt").then((data) => {
         if (c == "<") { pointer--; }
         if (c == "!") { output += getChar(pointers[pointer]); }
         if (c == "?") { output += pointer.toString(); }
-        if (c == "[") { jumpPoint = i; }
-        if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint; } }
-        if (c == "{") { jumpPoint = i; }
-        if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint; } }
-        if (c == "(") { jumpPoint = i; }
-        if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint; } }
+        if (c == "[") { jumpPoint.push(i); }
+        if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint[jumpPoint.length - 1]; } }
+        if (c == "{") { jumpPoint.push(i); }
+        if (c == "}") { if (pointers[pointer] == 0 || pointers[pointer] > 25) { i = jumpPoint[jumpPoint.length - 1]; } }
+        if (c == "(") { jumpPoint.push(i); }
+        if (c == ")") { if (pointers[pointer] < 26) { i = jumpPoint[jumpPoint.length - 1]; } }
         if (c == "^") { pointers[pointer] = toPoint(args[pointer]); }
         if (c == "*") { break }
         //#endregion

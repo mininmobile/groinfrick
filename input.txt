@@ -1,3 +1,15 @@
+>
+(
+	+
+	!
+	[
+		!
+	]
+)
+
+
+*
+
 > move to right pointer
 ( while this pointer is not a number
     + add 1 to this pointer
