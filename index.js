@@ -20,15 +20,15 @@ function getInputFile() {
 // Get Arguments
 var args = fs.readFileSync("input args.txt").toString();
 // Load Main Boi
-getInput(getInputFile()).then((data) => {
+getInput(getInputFile()).then((data, err) => {
 	// Convert data to string
 	var input = data.toString();
 
 	// Lexxer
 	input = input.replace(" ", "");
 	input = input.replace(/\r?\n|\r/g, "");
-	input = input.replace(/[a-z]/gi, "")
-	input = input.replace(/[0-9]/g, "")
+	input = input.replace(/[a-z]/gi, "");
+	input = input.replace(/[0-9]/g, "");
 
 	args = args.replace(/\r?\n|\r/g, "");
 	
@@ -41,7 +41,7 @@ getInput(getInputFile()).then((data) => {
 	for (let i = 0; i < input.length; i++) {
 		// Get Error Character
 		let e = input[i-1];
-		let errorDat = `\n      Position: ${i}\n      Character: ${e}`;
+		let errorDat = `\n    at Position: ${i}, Character: '${e}'\n    at File: ${getInputFile()}`;
 
 		// Error Handler
 		if (pointer < 0) throw new Error(`Pointer accounts to under 0${errorDat}`);
