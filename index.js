@@ -76,7 +76,7 @@ getInput(getInputFile()).then((data) => {
 	else
 		console.log(output);
 }).catch((message) => {
-	// When the an error, who you gonna call?
+	// When there's an error, in your neighbourhood, who you gonna call?
 	// ERROR BUSTERS!
 	console.error(message);
 });
