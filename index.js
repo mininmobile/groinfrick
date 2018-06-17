@@ -20,7 +20,7 @@ function getInputFile() {
 // Get Arguments
 var args = fs.readFileSync("input args.txt").toString();
 // Load Main Boi
-getInput(getInputFile()).then((data, err) => {
+getInput(getInputFile()).then((data) => {
 	// Convert data to string
 	var input = data.toString();
 
