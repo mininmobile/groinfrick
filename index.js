@@ -17,7 +17,7 @@ getInput("input.txt").then((data) => {
     // Convert data to string
     var input = data.toString();
 
-    // p u r i f y
+    // Lexxer
     input = input.replace(" ", "");
     input = input.replace(/\r?\n|\r/g, "");
     input = input.replace(/[a-z]/gi, "")
@@ -30,8 +30,7 @@ getInput("input.txt").then((data) => {
     var pointer = 0;
     var jumpPoint = [];
     
-    // Begin
-    var output = "";
+    // Parser
     for (let i = 0; i < input.length; i++) {
         // Get Error Character
         let e = input[i-1];
@@ -49,8 +48,8 @@ getInput("input.txt").then((data) => {
         if (c == "-") { pointers[pointer] -= 1; }
         if (c == ">") { pointer++; if (pointer == pointers.length) { pointers.push(0); } }
         if (c == "<") { pointer--; }
-        if (c == "!") { output += getChar(pointers[pointer]); }
-        if (c == "?") { output += pointer.toString(); }
+        if (c == "!") { console.log(getChar(pointers[pointer])); }
+        if (c == "?") { console.log(pointer.toString()); }
         if (c == "[") { jumpPoint.push(i); }
         if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint[jumpPoint.length - 1]; jumpPoint.pop(); } }
         if (c == "{") { jumpPoint.push(i); }
@@ -63,9 +62,6 @@ getInput("input.txt").then((data) => {
 		
 		console.log(jumpPoint)
     }
-    
-    // Read Output
-    console.log(output);
 }).catch((message) => {
     // When the an error, who you gonna call?
     // ERROR BUSTERS!
