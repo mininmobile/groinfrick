@@ -19,23 +19,26 @@ function getInputFile() {
 
 // Get Arguments
 var args = fs.readFileSync("input args.txt").toString();
-// Load Main Boi
+// Launch Interpreter
 getInput(getInputFile()).then((data) => {
 	// Convert data to string
 	var input = data.toString();
 
-	// Lexxer
+	// Lex Input
 	input = input.replace(" ", "");
 	input = input.replace(/\r?\n|\r/g, "");
 	input = input.replace(/[a-z]/gi, "");
 	input = input.replace(/[0-9]/g, "");
-
+	// Lex Arguments
 	args = args.replace(/\r?\n|\r/g, "");
 	
 	// Create Point Registry
 	var pointers = [0];
 	var pointer = 0;
 	var jumpPoint = [];
+
+	// Create Output Steam
+	var output = "";
 	
 	// Parser
 	for (let i = 0; i < input.length; i++) {
@@ -55,8 +58,8 @@ getInput(getInputFile()).then((data) => {
 		else if (c == "-") { pointers[pointer] -= 1; }
 		else if (c == ">") { pointer++; if (pointer == pointers.length) { pointers.push(0); } }
 		else if (c == "<") { pointer--; }
-		else if (c == "!") { console.log(getChar(pointers[pointer])); }
-		else if (c == "?") { console.log(pointer.toString()); }
+		else if (c == "!") { output += toChar(pointers[pointer]); }
+		else if (c == "?") { output += pointer.toString(); }
 		else if (c == "[") { jumpPoint.push(i); }
 		else if (c == "]") { if (pointers[pointer] != 0) { i = jumpPoint[jumpPoint.length - 1] - 1; jumpPoint.pop(); } }
 		else if (c == "{") { jumpPoint.push(i); }
@@ -67,6 +70,12 @@ getInput(getInputFile()).then((data) => {
 		else if (c == "*") { break }
 		//#endregion
 	}
+
+	if (output == "") {
+		console.log("Script exitted without any output...");
+	} else {
+		console.log(output);
+	}
 }).catch((message) => {
 	// When the an error, who you gonna call?
 	// ERROR BUSTERS!
@@ -74,7 +83,7 @@ getInput(getInputFile()).then((data) => {
 });
 
 // Convert Point to Char
-function getChar(p) {
+function toChar(p) {
 	if (p == 0) return "null";
 	else if (p > 0 && p <= 26) return "qwertyuiopasdfghjklzxcvbnm"[p - 1];
 	else if (p > 25) return (p-27).toString();
