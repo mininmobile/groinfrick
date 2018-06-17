@@ -37,7 +37,7 @@ getInput(getInputFile()).then((data) => {
 	var pointer = 0;
 	var jumpPoint = [];
 
-	// Create Output Steam
+	// Create Output Stream
 	var output = "";
 	
 	// Parser
@@ -71,11 +71,10 @@ getInput(getInputFile()).then((data) => {
 		//#endregion
 	}
 
-	if (output == "") {
-		console.log("Script exitted without any output...");
-	} else {
+	if (output == "")
+		console.log("Script exitted without any output");
+	else
 		console.log(output);
-	}
 }).catch((message) => {
 	// When the an error, who you gonna call?
 	// ERROR BUSTERS!
