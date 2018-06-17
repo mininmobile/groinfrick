@@ -1,3 +1,8 @@
+^!>^!>^!>^!>^!>
+
+
+*
+
 > move to right pointer
 ( while this pointer is not a number
     + add 1 to this pointer
@@ -7,10 +12,10 @@
 
 while this pointer is not null or 0
 [
-    - take 1 from current pointer
-    > move to right pointer
-    + add 1 to current pointer
-    < move to left pointer
+	- take 1 from current pointer
+	> move to right pointer
+	+ add 1 to current pointer
+	< move to left pointer
 ]
 
 ! echo current pointer value
