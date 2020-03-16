@@ -1,44 +1,40 @@
 # groinfrick
-Totally not a Brainfuck clone.
+brainfuck clone with extended feature set.
 
-## Usage
-### Running the Interpreter
-Run from the included `input.txt` file
+## philosophy
 ```
-node .
-```
-Run a file from a path
-```
-node . ./code/readInput.txt
+why use many word when few word do
+
+
+
+
+do ✅
 ```
 
-### Giving Script Input
-Add all input you want to give your script to `input args.txt`, newlines and whitespace will be parsed as null.
+## usage
+groinfrick uses the first file path provided as the code to be interpreted. (`node . program.txt`)
 
-## Commands
-Command | Purpose
---- | --
-`^` | Set current pointer to corrosponding argument point
-`?` | Echo current pointer
-`!` | Echo current pointer's data
-`*` | Exit prematurely
-`+` | Add 1 to pointer selected
-`-` | Remove 1 from pointer selected
-`>` | Move to right pointer
-`<` | Move to left pointer
+to specify input, specify a txt as the second argument. (`node . program.txt input.txt`)
 
-Loop | Process
+## commands
+### normal
+few | do
 --- | ---
-`[`, `]` | While current pointer is *not* null
-`{`, `}` | While current pointer is *not* string
-`(`, `)` | While current pointer is *not* int
-
-## Data Types
-### Strings
-From 1 to 26 in the QWERTY alphabet.
-
-### Integers
-From 26 to infinity - so `27 == 0`, `28 == 1`, `29 == 2`, etc.
-
-### Null
-When the pointer data is equal to 0.
+`<` | move pointer left
+`>` | move pointer right
+`+` | increment pointer
+`-` | decrement pointer
+`,` | get next input char
+`.` | echo pointer data (ascii)
+`[` | jump to matching bracket if pointer is zero
+`]` | jump back to matching bracket if pointer is nonzero
+### extended
+few | do
+--- | ---
+`!` | echo pointer data (hex)
+`?` | echo pointer position
+`*` | exit prematurely
+`{` | jump to matching bracket if pointer is <=32
+`}` | jump back to matching bracket if pointer is >32
+`(` | jump to matching bracket is pointer is >127
+`)` | jump back to matching bracket if pointer is <=127
