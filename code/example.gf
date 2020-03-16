@@ -1,6 +1,6 @@
 +.
-++.
-+++.
++.
++.
 *
 
 this little example file should print
