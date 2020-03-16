@@ -13,7 +13,7 @@ async function getInput(file) {
 // Get Input File
 function getInputFile() {
 	if (process.argv[2]) return process.argv[2];
-	
+
 	return "input.txt";
 }
 
@@ -31,7 +31,7 @@ getInput(getInputFile()).then((data) => {
 	input = input.replace(/[0-9]/g, "");
 	// Lex Arguments
 	args = args.replace(/\r?\n|\r/g, "");
-	
+
 	// Create Point Registry
 	var pointers = [0];
 	var pointer = 0;
@@ -39,7 +39,7 @@ getInput(getInputFile()).then((data) => {
 
 	// Create Output Stream
 	var output = "";
-	
+
 	// Parser
 	for (let i = 0; i < input.length; i++) {
 		// Get Error Character
@@ -76,8 +76,7 @@ getInput(getInputFile()).then((data) => {
 	else
 		console.log(output);
 }).catch((message) => {
-	// When there's an error, in your neighbourhood, who you gonna call?
-	// ERROR BUSTERS!
+	// eror :(
 	console.error(message);
 });
 
