@@ -20,9 +20,17 @@ readFile(getInputFile()).then((data) => {
 	// convert data to string
 	let input = data.toString();
 
-	// debug
-	console.log(`[gf] input: ${input}`);
-	console.log(`[gf] args: ${args}`);
+	// loop
+	for (let i = 0; i < input.length; i++) {
+		// get character
+		let c = input[i];
+
+		// check if command
+		if ("<>+-,.[]!?*{}()".includes(c)) {
+			// debug
+			console.log(c);
+		}
+	}
 }).catch((message) => {
 	// eror :(
 	console.error(message);
