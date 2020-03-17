@@ -91,7 +91,7 @@ readFile(getInputFile()).then((data) => {
 			} break;
 
 			// start null loop
-			case "[": {
+			case "[": case "{": case "(": {
 				// check if loop condition already met
 				if (memory[pointer] <= 0) {
 					// store layers
@@ -99,15 +99,15 @@ readFile(getInputFile()).then((data) => {
 
 					// skip over loop
 					// if not on end loop char and on same layer
-					while (!(input[i] == "]" && l == 0)) {
+					while (!(input[i] == matchbracket(c) && l == 0)) {
 						// increment position
 						i++;
 
 						// increment layer
-						if (input[i] == "[")
+						if (input[i] == c)
 							l++;
 						// decrement layer
-						if (input[i] == "]")
+						if (input[i] == matchbracket(c))
 							l--;
 					}
 				} else {
@@ -118,7 +118,7 @@ readFile(getInputFile()).then((data) => {
 			} break;
 
 			// loop ends
-			case "]": {
+			case "]": case "}": case ")": {
 				// check if condition hasn't been met
 				if (memory[pointer] > 0) {
 					// if it hasn't, jump back
@@ -129,15 +129,16 @@ readFile(getInputFile()).then((data) => {
 				}
 			} break;
 
-			// echo pointer data (hex)
-			case "!": {
+			// ! echo pointer data (hex)
+			// ? echo pointer position
+			case "!": case "?": {
 				// safety new line
 				if (nnl)
 					process.stdout.write("\n");
 				nnl = false;
 
 				// write pointer data as hexadecimal
-				console.log(`0x${memory[pointer].toString(16)}`);
+				console.log(`0x${(c == "!" ? memory[pointer] : pointer).toString(16)}`);
 			} break;
 
 			// force exit
@@ -150,3 +151,14 @@ readFile(getInputFile()).then((data) => {
 }).then(() => {
 	process.stdout.write("\r\n");
 });
+
+function matchbracket(b) {
+	switch (b) {
+		case "[": return "]";
+		case "{": return "}";
+		case "(": return ")";
+		case "]": return "[";
+		case "}": return "{";
+		case ")": return "(";
+	}
+}
