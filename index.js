@@ -94,11 +94,22 @@ readFile(getInputFile()).then((data) => {
 			case "[": {
 				// check if loop condition already met
 				if (memory[pointer] <= 0) {
-					// TODO don't stop at any other bracket
+					// store layers
+					let l = 1;
 
 					// skip over loop
-					while (input[i] != "]")
+					// if not on end loop char and on same layer
+					while (!(input[i] == "]" && l == 0)) {
+						// increment position
 						i++;
+
+						// increment layer
+						if (input[i] == "[")
+							l++;
+						// decrement layer
+						if (input[i] == "]")
+							l--;
+					}
 				} else {
 					// add loopback position (position to jump back to if loop
 					// still hasn't met condition)
