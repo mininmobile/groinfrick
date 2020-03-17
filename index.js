@@ -59,7 +59,7 @@ readFile(getInputFile()).then((data) => {
 			// increment pointer
 			case "+": memory[pointer]++; break;
 			// decrement pointer
-			case "-": memory[pointer]++; break;
+			case "-": memory[pointer]--; break;
 
 			// get next input char
 			case ",": {
@@ -93,7 +93,7 @@ readFile(getInputFile()).then((data) => {
 			// start null loop
 			case "[": {
 				// check if loop condition already met
-				if (memory[pointer] == 0) {
+				if (memory[pointer] <= 0) {
 					// TODO don't stop at any other bracket
 
 					// skip over loop
@@ -109,7 +109,7 @@ readFile(getInputFile()).then((data) => {
 			// loop ends
 			case "]": {
 				// check if condition hasn't been met
-				if (memory[pointer] != 0) {
+				if (memory[pointer] > 0) {
 					// if it hasn't, jump back
 					i = loopback[loopback.length - 1];
 				} else {
