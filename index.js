@@ -90,6 +90,34 @@ readFile(getInputFile()).then((data) => {
 				nnl = true;
 			} break;
 
+			// start null loop
+			case "[": {
+				// check if loop condition already met
+				if (memory[pointer] == 0) {
+					// TODO don't stop at any other bracket
+
+					// skip over loop
+					while (input[i] != "]")
+						i++;
+				} else {
+					// add loopback position (position to jump back to if loop
+					// still hasn't met condition)
+					loopback.push(i);
+				}
+			} break;
+
+			// loop ends
+			case "]": {
+				// check if condition hasn't been met
+				if (memory[pointer] != 0) {
+					// if it hasn't, jump back
+					i = loopback[loopback.length - 1];
+				} else {
+					// if it has, remove loopback address
+					loopback = loopback.filter((x, i) => i != loopback.length - 1);
+				}
+			} break;
+
 			// echo pointer data (hex)
 			case "!": {
 				// safety new line
