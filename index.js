@@ -82,7 +82,7 @@ readFile(getInputFile()).then((data) => {
 					process.stdout.write(String.fromCharCode(memory[pointer]));
 				} else {
 					// if not in ascii bounds, write number
-					process.stdout.write(memory[pointer]);
+					process.stdout.write((memory[pointer]).toString());
 				}
 
 				// we use process.stdout.write bc it doesn't write a new line,
