@@ -93,7 +93,7 @@ readFile(getInputFile()).then((data) => {
 			// start null loop
 			case "[": case "{": case "(": {
 				// check if loop condition already met
-				if (memory[pointer] <= 0) {
+				if (bracketexpr(c, memory[pointer])) {
 					// store layers
 					let l = 1;
 
@@ -120,7 +120,7 @@ readFile(getInputFile()).then((data) => {
 			// loop ends
 			case "]": case "}": case ")": {
 				// check if condition hasn't been met
-				if (memory[pointer] > 0) {
+				if (bracketexpr(c, memory[pointer])) {
 					// if it hasn't, jump back
 					i = loopback[loopback.length - 1];
 				} else {
@@ -145,13 +145,18 @@ readFile(getInputFile()).then((data) => {
 			case "*": i = input.length; break;
 		}
 	}
+
+	// drop an extra new line
+	if (nnl)
+		process.stdout.write("\n");
 }).catch((message) => {
 	// eror :(
 	console.error(message);
-}).then(() => {
-	process.stdout.write("\r\n");
-});
+})
 
+// get matching bracket
+// b = bracket = [, ], {, }, (, )
+// returns opposite of bracket
 function matchbracket(b) {
 	switch (b) {
 		case "[": return "]";
@@ -160,5 +165,20 @@ function matchbracket(b) {
 		case "]": return "[";
 		case "}": return "{";
 		case ")": return "(";
+	}
+}
+
+// get expression for bracket
+// b = bracket = [, ], {, }, (, )
+// mp = memory[pointer] = value of current memory slot
+// returns expression result
+function bracketexpr(b, mp) {
+	switch (b) {
+		case "[": return (mp <= 0);
+		case "]": return (mp > 0);
+		case "{": return (mp <= 0);
+		case "}": return (mp <= 0);
+		case "(": return (mp <= 0);
+		case ")": return (mp <= 0);
 	}
 }

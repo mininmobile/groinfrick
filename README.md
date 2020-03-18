@@ -38,3 +38,14 @@ few | do
 `}` | jump back to matching bracket if pointer is >32
 `(` | jump to matching bracket is pointer is >127
 `)` | jump back to matching bracket if pointer is <=127
+
+## differences
+here are a few notable differences from brainfuck (other than theextended
+character set) that may be useful to groinfrick programmers
+
+- files should end with the `.gf` extension and input files should end with the `.gfi` extension
+- `[` actually checks for `<= 0`, not just `= 0`, and the equivalent goes for `]`.
+- for end-of-lines stuff i just print `\n` and hope it works on all platforms
+- when end of input file is reached, the cell is set to 0
+- cell size is js type `number`, so practically infinite
+- array size is unlimited, when you try to go left beyond the first cell the pointer is reset to the first cell.
