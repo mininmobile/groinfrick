@@ -160,10 +160,10 @@ readFile(getInputFile()).then((data) => {
 function matchbracket(b) {
 	switch (b) {
 		case "[": return "]";
-		case "{": return "}";
-		case "(": return ")";
 		case "]": return "[";
+		case "{": return "}";
 		case "}": return "{";
+		case "(": return ")";
 		case ")": return "(";
 	}
 }
@@ -176,9 +176,9 @@ function bracketexpr(b, mp) {
 	switch (b) {
 		case "[": return (mp <= 0);
 		case "]": return (mp > 0);
-		case "{": return (mp <= 0);
-		case "}": return (mp <= 0);
-		case "(": return (mp <= 0);
-		case ")": return (mp <= 0);
+		case "{": return (mp <= 32);
+		case "}": return (mp > 32);
+		case "(": return (mp > 127);
+		case ")": return (mp <= 127);
 	}
 }

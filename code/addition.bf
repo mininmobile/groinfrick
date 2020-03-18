@@ -1,6 +1,6 @@
 brainfuck addition example from wikipedia
 
-this shows groinfricks backwards compatability with brainfuck, the comments
+this shows groinfricks backwards compatability with brainfuck the comments
 have been modified to remove characters that are used by groinfrick but
 weren't being used by brainfuck
 
