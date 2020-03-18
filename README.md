@@ -1,44 +1,51 @@
 # groinfrick
-Totally not a Brainfuck clone.
+brainfuck clone with extended feature set.
 
-## Usage
-### Running the Interpreter
-Run from the included `input.txt` file
+## philosophy
 ```
-node .
-```
-Run a file from a path
-```
-node . ./code/readInput.txt
+why use many word when few word do
+
+
+
+
+do ✅
 ```
 
-### Giving Script Input
-Add all input you want to give your script to `input args.txt`, newlines and whitespace will be parsed as null.
+## usage
+groinfrick uses the first file path provided as the code to be interpreted. (`node . program.txt`)
 
-## Commands
-Command | Purpose
---- | --
-`^` | Set current pointer to corrosponding argument point
-`?` | Echo current pointer
-`!` | Echo current pointer's data
-`*` | Exit prematurely
-`+` | Add 1 to pointer selected
-`-` | Remove 1 from pointer selected
-`>` | Move to right pointer
-`<` | Move to left pointer
+to specify input, specify a txt as the second argument. (`node . program.txt input.txt`)
 
-Loop | Process
+## commands
+### normal
+few | do
 --- | ---
-`[`, `]` | While current pointer is *not* null
-`{`, `}` | While current pointer is *not* string
-`(`, `)` | While current pointer is *not* int
+`<` | move pointer left
+`>` | move pointer right
+`+` | increment pointer
+`-` | decrement pointer
+`,` | get next input char
+`.` | echo pointer data (ascii)
+`[` | jump to matching bracket if pointer is zero
+`]` | jump back to matching bracket if pointer is nonzero
+### extended
+few | do
+--- | ---
+`!` | echo pointer data (hex)
+`?` | echo pointer position
+`*` | exit prematurely
+`{` | jump to matching bracket if pointer is <=32
+`}` | jump back to matching bracket if pointer is >32
+`(` | jump to matching bracket is pointer is >127
+`)` | jump back to matching bracket if pointer is <=127
 
-## Data Types
-### Strings
-From 1 to 26 in the QWERTY alphabet.
+## differences
+here are a few notable differences from brainfuck (other than theextended
+character set) that may be useful to groinfrick programmers
 
-### Integers
-From 26 to infinity - so `27 == 0`, `28 == 1`, `29 == 2`, etc.
-
-### Null
-When the pointer data is equal to 0.
+- files should end with the `.gf` extension and input files should end with the `.gfi` extension
+- `[` actually checks for `<= 0`, not just `= 0`, and the equivalent goes for `]`.
+- for end-of-lines stuff i just print `\n` and hope it works on all platforms
+- when end of input file is reached, the cell is set to 0
+- cell size is js type `number`, so practically infinite
+- array size is unlimited, when you try to go left beyond the first cell the pointer is reset to the first cell.
